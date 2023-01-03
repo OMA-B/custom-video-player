@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+
+/* ------------------ Reset -------- */
+body, body * {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+    font-family: 'Titillium Web', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: #797979;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='152' height='152' viewBox='0 0 152 152'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='temple' fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M152 150v2H0v-2h28v-8H8v-20H0v-2h8V80h42v20h20v42H30v8h90v-8H80v-42h20V80h42v40h8V30h-8v40h-42V50H80V8h40V0h2v8h20v20h8V0h2v150zm-2 0v-28h-8v20h-20v8h28zM82 30v18h18V30H82zm20 18h20v20h18V30h-20V10H82v18h20v20zm0 2v18h18V50h-18zm20-22h18V10h-18v18zm-54 92v-18H50v18h18zm-20-18H28V82H10v38h20v20h38v-18H48v-20zm0-2V82H30v18h18zm-20 22H10v18h18v-18zm54 0v18h38v-20h20V82h-18v20h-20v20H82zm18-20H82v18h18v-18zm2-2h18V82h-18v18zm20 40v-18h18v18h-18zM30 0h-2v8H8v20H0v2h8v40h42V50h20V8H30V0zm20 48h18V30H50v18zm18-20H48v20H28v20H10V30h20V10h38v18zM30 50h18v18H30V50zm-2-40H10v18h18V10z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ------------------ variables -------- */
+:root {
+    --primary-color: rgb(255, 120, 30);
+    --font-color: #fff;
+}
+
+/* ------------------ video player container -------- */
+.player {
+    width: 95vw;
+    max-width: 900px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 6px solid rgb(0 0 0 / 80%);
+    position: relative;
+}
+
+.video {
+    width: 100%;
+    border-radius: 5px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* ------------------ control panel -------- */
+.control-panel {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%;
+}
+
+/* ------------------ control container -------- */
+.control-container {
+    background: rgb(0 0 0 / 70%);
+    position: relative;
+    top: 30%;
+    width: 100%;
+    height: 70%;
+    opacity: 0;
+    transition: opacity 0.5s 2s;
+}
+
+/* ------ to make the control container show as user taps or hovers towards bottom of the player window -------- */
+.control-panel:hover .control-container {
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+/* ------------------ progress slider -------- */
+.progress-range {
+    position: absolute;
+    top: 18%;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 6px;
+    background: #797979;
+    cursor: pointer;
+}
+
+.progress-range:hover { height: 7.5px;}
+
+.progress-range, .progress-bar {
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+/* ------------------ control groups -------- */
+.control-group {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 10%;
+    left: 10px;
+    width: calc(100% - 20px);
+}
+
+/* ------------------ left control -------- */
+.left-controls, .right-controls {
+    display: flex;
+    align-items: center;
+}
+
+.play-pause, .volume { margin-right: 10px; }
+
+#play-icon, #volume-icon, #fullscreen-icon {
+    font-size: 3.4vw;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+#play-icon:hover, #volume-icon:hover, #fullscreen-icon:hover, #play-icon:active, #volume-icon:active, #fullscreen-icon:active { color: var(--primary-color); }
+
+/* ------------------ volume container -------- */
+.volume-container {
+    display: flex;
+    align-items: center;
+}
+
+.volume-range {
+    width: 18vw;
+    height: 5px;
+    background: #797979;
+    cursor: pointer;
+}
+
+.volume-range, .volume-bar {
+    border-radius: 5px;
+    transition: all 0.5s;
+}
+
+.volume-bar, .progress-bar {
+    width: 50%;
+    height: 100%;
+    background: var(--font-color);
+}
+
+.volume-range:hover { height: 6px; }
+
+.volume-range:hover .volume-bar, .progress-range:hover .progress-bar { background: var(--primary-color); }
+
+/* ------------------ right controls -------- */
+.time-stamp, .fullscreen { margin-left: 10px; }
+
+/* ------------------ speed -------- */
+.playback-speed {
+    position: relative;
+    cursor: pointer;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.display-text {
+    color: var(--font-color);
+    font-size: 2.4vw;
+}
+
+.playback-speed:hover .display-text { color: var(--primary-color); }
+
+.options {
+    position: absolute;
+    top: -115px;
+    background: #797979;
+    width: 100%;
+    padding: 9px;
+    border-radius: 5px;
+    transform: scaleY(0);
+    transition: all 0.15s;
+}
+
+.options option {
+    color: var(--font-color);
+    padding-left: 5px;
+    border-radius: 2px;
+    font-weight: bold;
+}
+
+.options option:nth-child(3), .options option:hover { background: var(--primary-color); }
+
+/* ------------------ options pop-out animation -------- */
+.playback-speed:hover .options { animation: pop-out 0.3s ease-out forwards; }
+
+@keyframes pop-out {
+    0% { transform: scaleY(0); }
+    75% { transform: scaleY(1.2); }
+    100% { transform: scaleY(1); }
+}
+
+/* ------------------ time -------- */
+.time-stamp span {
+    color: var(--font-color);
+    font-size: 2.6vw;
+}
+
+/* ------------------ adjustments for larger screen sizes -------- */
+@media screen and (min-width: 530px) {
+    .control-group { bottom: 15%; }
+}
+
+@media screen and (min-width: 680px) {
+    .progress-range, .control-group {
+        left: 15px;
+        width: calc(100% - 30px);
+    }
+
+    .display-text { font-size: 16px; }
+
+    .time-stamp span { font-size: 17px; }
+
+    .control-container {
+        top: 35%;
+        height: 65%;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    #play-icon, #volume-icon, #fullscreen-icon { font-size: 26px;}
+
+    .progress-range { top: 20%; }
+
+    .volume-range { width: 138px; }
+}
+
+@media screen and (min-width: 870px) {
+    .control-group { bottom: 18%; }
+
+    .progress-range { top: 22%; }
+
+    .control-container {
+        top: 40%;
+        height: 60%;
+    }
+}
