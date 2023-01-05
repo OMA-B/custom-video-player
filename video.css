@@ -34,7 +34,9 @@ body {
     border-radius: 10px;
     overflow: hidden;
     border: 6px solid rgb(0 0 0 / 80%);
+    background: rgb(0 0 0 / 95%);
     position: relative;
+    display: flex;
 }
 
 .video {
@@ -44,6 +46,14 @@ body {
     cursor: pointer;
 }
 
+/* ---------- for when user goes fullscreen on the video -------- */
+.fullscreened {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 1px;
+}
+
 /* ------------------ control panel -------- */
 .control-panel {
     position: absolute;
@@ -51,6 +61,9 @@ body {
     width: 100%;
     height: 30%;
 }
+
+/* ---------- control panel adjustment for when user goes fullscreen on the video -------- */
+.fullscreen-panel { height: 13%;}
 
 /* ------------------ control container -------- */
 .control-container {
@@ -92,7 +105,7 @@ body {
     display: flex;
     justify-content: space-between;
     position: absolute;
-    bottom: 10%;
+    bottom: 5%;
     left: 10px;
     width: calc(100% - 20px);
 }
@@ -103,7 +116,9 @@ body {
     align-items: center;
 }
 
-.play-pause, .volume { margin-right: 10px; }
+.play-pause, .volume { width: 22px; }
+
+.volume { margin-right: 5px; }
 
 #play-icon, #volume-icon, #fullscreen-icon {
     font-size: 3.4vw;
@@ -124,6 +139,7 @@ body {
     height: 5px;
     background: #797979;
     cursor: pointer;
+    position: relative;
 }
 
 .volume-range, .volume-bar {
@@ -132,7 +148,7 @@ body {
 }
 
 .volume-bar, .progress-bar {
-    width: 50%;
+    width: 100%;
     height: 100%;
     background: var(--font-color);
 }
@@ -140,6 +156,13 @@ body {
 .volume-range:hover { height: 6px; }
 
 .volume-range:hover .volume-bar, .progress-range:hover .progress-bar { background: var(--primary-color); }
+
+/* ------------------ to avoid volume and progress bars' interference -------- */
+.volume-range .layer, .progress-range .layer {
+    position: absolute;
+    inset: 0 0 0 0;
+    background: transparent;
+}
 
 /* ------------------ right controls -------- */
 .time-stamp, .fullscreen { margin-left: 10px; }
@@ -198,6 +221,20 @@ body {
 /* ------------------ adjustments for larger screen sizes -------- */
 @media screen and (min-width: 530px) {
     .control-group { bottom: 15%; }
+
+    .fullscreen-panel { height: 15%;}
+}
+
+@media screen and (min-width: 541px) {
+    .play-pause, .volume { width: 26px; }
+    
+    .volume { margin-right: 10px; }
+
+    .fullscreen-panel { height: 17%; }
+}
+
+@media screen and (min-width: 650px) {
+    .fullscreen-panel { height: 110px; }
 }
 
 @media screen and (min-width: 680px) {
@@ -214,6 +251,14 @@ body {
         top: 35%;
         height: 65%;
     }
+
+    .play-pause, .volume { width: 32px; }
+
+    .volume { margin-right: 10px; }
+}
+
+@media screen and (min-width: 705px) {
+    .fullscreen-panel { height: 130px; }
 }
 
 @media screen and (min-width: 770px) {
@@ -222,6 +267,12 @@ body {
     .progress-range { top: 20%; }
 
     .volume-range { width: 138px; }
+
+    .fullscreen-panel { height: 140px; }
+}
+
+@media screen and (min-width: 810px) {
+    .fullscreen-panel { height: 150px; }
 }
 
 @media screen and (min-width: 870px) {
@@ -233,4 +284,10 @@ body {
         top: 40%;
         height: 60%;
     }
+
+    .fullscreen-panel { height: 170px; }
+}
+
+@media screen and (min-aspect-ratio: 2/1) {
+    .player { height: 95vh;}
 }
