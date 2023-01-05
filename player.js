@@ -148,4 +148,6 @@ volume_range.addEventListener('click', adjust_volume);
 volume_icon.addEventListener('click', toggle_mute);
 video.addEventListener('timeupdate', set_progress);
 progress_range.addEventListener('click', seek);
-fullscreen_icon.addEventListener('click', toggle_fullscreen)
+fullscreen_icon.addEventListener('click', toggle_fullscreen);
+// to toggle fullscreen on and off when user double click or tap on the video screen
+video.addEventListener('dblclick', toggle_fullscreen);
