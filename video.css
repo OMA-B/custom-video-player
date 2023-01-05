@@ -290,4 +290,6 @@ body {
 
 @media screen and (min-aspect-ratio: 2/1) {
     .player { height: 95vh;}
+
+    .fullscreened { height: 100%; }
 }
