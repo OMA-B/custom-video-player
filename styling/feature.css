@@ -1,0 +1,136 @@
+/* ------------------ Additional Features -------- */
+.features-container {
+    position: absolute;
+    inset: 0 0 0 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(4px);
+    background: rgb(0 0 0 / 70%);
+    overflow: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+}
+
+/* ------------------ animation to let Features container fade in -------- */
+.fade-in {
+    display: flex;
+    animation: fade-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* ------------------ Go to user guide or playlist -------- */
+.more-container, .user-guide-container, .playlist-container {
+    position: relative;
+    background: #7979799b;
+    width: 80%;
+    max-width: 500px;
+    padding: 40px 40px 25px;
+    border: 6px solid var(--primary-color);
+    border-radius: 10px;
+    transform: translateX(100vw);
+}
+
+.more-container button {
+    display: block;
+    width: 100%;
+    text-align: start;
+    padding: 10px 20px;
+    font-size: 4vw;
+    font-weight: bold;
+    border: 1px solid rgb(0 0 0 / 70%);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    background: var(--font-color);
+    color: rgb(0 0 0 / 80%);
+    cursor: pointer;
+}
+
+.more-container button i, .playlist-container .video-clip i { margin-right: 12px;}
+
+.more-container button:hover, .more-container button:active {
+    background: var(--primary-color);
+    color: var(--font-color);
+}
+
+#cancel, #back {
+    position: absolute;
+    top: 10px;
+    font-size: 20px;
+    color: var(--font-color);
+    cursor: pointer;
+}
+#cancel { right: 10px; }
+
+#cancel:hover, #back:hover, #cancel:active, #back:active { transform: scale(1.2); }
+
+/* ------------------ user guide -------- */
+.user-guide-container, .playlist-container { padding: 0; }
+
+.user-guide-container .heading, .playlist-container .heading {
+    background: var(--primary-color);
+    color: var(--font-color);
+    font-size: 25px;
+    text-align: center;
+    padding: 17px 0 10px;
+}
+
+.user-guide-container .guide, .playlist-container .list { padding: 15px 12px 5px; }
+
+.user-guide-container .guide .guides {
+    font-size: 15px;
+    color: var(--font-color);
+    line-height: 18px;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+}
+
+.user-guide-container .guide .guides:not(:nth-child(7)) {
+    border-bottom: 1px solid #797979;
+}
+
+.user-guide-container .guide .guides i { margin-right: 5px;}
+
+#back { left: 10px; }
+
+/* ------------------ playlist -------- */
+.playlist-container .video-clip {
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.playlist-container .video-clip:hover, .playlist-container .video-clip:active { background: var(--primary-color);}
+
+.playlist-container .video-clip * { 
+    font-size: 3.5vw;
+    background: transparent;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+/* ------------------ animation to let Features container fade in -------- */
+.slide-in { animation: slide-in 0.2s ease-out 0.5s forwards; }
+
+@keyframes slide-in {
+    0% { transform: translateX(100vw); }
+    75% { transform: translateX(-50px); }
+    100% { transform: translateX(0); }
+}
+
+/* ------------------ adjustments for larger screen sizes -------- */
+@media screen and (min-width: 550px) {
+    .more-container button, #cancel, #back { font-size: 22px; }
+
+    .user-guide-container .guide .guides {
+        padding-bottom: 8px;
+        margin-bottom: 8px;
+    }
+
+    .playlist-container .video-clip * { font-size: 17px; }
+}

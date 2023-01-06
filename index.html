@@ -8,7 +8,8 @@
     <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
     <!-- Styling -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
-    <link rel="stylesheet" href="video.css">
+    <link rel="stylesheet" href="main.css">
+
     <title>Custom Video Player</title>
 </head>
 <body>
@@ -17,7 +18,7 @@
     <!-- player container -->
     <div class="player">
         <!-- video player  -->
-        <video src="assets/trimmed-000-nkiri.com The Hows of Us.mkv" class="video" playinline></video>
+        <video src="assets/The Hows of Us - Excerpt.mp4" class="video" playinline></video>
 
         <!-- Control panel -->
         <div class="control-panel">
@@ -53,7 +54,10 @@
                     <div class="right-controls">
                         <!-- Speed -->
                         <div class="playback-speed">
-                            <span class="display-text" title="Playback Rate"><i class="fa-sharp fa-solid fa-circle-play"></i> Playback speed</span>
+                            <span class="display-text" title="Playback Rate">
+                                <i class="fa-sharp fa-solid fa-circle-play"></i> Playback speed
+                                <div class="layer"></div>
+                            </span>
                             <div class="options">
                                 <option value="0.5">0.5 x</option>
                                 <option value="0.75">0.75 x</option>
@@ -75,9 +79,71 @@
                 </div>
             </div>
         </div>
+
+        <!-- do more section -->
+        <div class="do-more-container">
+            <div class="more-icon">
+                <i class="fa-solid fa-list" id="more-icon" title="More"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Features -->
+    <div class="features-container">
+        <!-- Go to user guide or playlist -->
+        <div class="more-container slide-in">
+            <i class="fa-solid fa-circle-xmark" id="cancel" title="Exit"></i>
+            <button class="user-guide"><i class="fa-solid fa-scroll"></i> User Guide</button>
+            <button class="Playlist"><i class="fa-regular fa-rectangle-list"></i> Playlist</button>
+        </div>
+        <!-- user guide -->
+        <div class="user-guide-container" hidden>
+            <i class="fa-solid fa-circle-left" id="back" title="Back"></i>
+            <i class="fa-solid fa-circle-xmark" id="cancel" title="Exit"></i>
+            <h1 class="heading">USER GUIDE</h1>
+            <div class="guide">
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To access control panel; tap or hover toward bottom of player screen.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To play and pause video; click anywhere on the upper part of the player screen, or you can simply use the play button.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To mute and unmute video; click on the speaker button, or click anywhere on the volume bar to unmute.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To adjust video volume; click anywhere on the volume bar.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To seek or skip to anywhere in the video; simply click anywhere on the progress bar.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To go in and out of fullscreen mode; double click anywhere on the upper part of the player screen, or you can simply use the fullscreen button.</p>
+                <p class="guides"><i class="fa-regular fa-circle-play"></i> To adjust video speed; click the Playback speed button and select your desired speed rate from the options.</p>
+            </div>
+        </div>
+        <!-- Playlist -->
+        <div class="playlist-container" hidden>
+            <i class="fa-solid fa-circle-left" id="back" title="Back"></i>
+            <i class="fa-solid fa-circle-xmark" id="cancel" title="Exit"></i>
+            <h1 class="heading">PLAYLIST</h1>
+            <ul class="list">
+                <li class="video-clip">
+                    <i class="fa-regular fa-file-video"></i>
+                    <button>Beach Wave</button>
+                </li>
+                <li class="video-clip">
+                    <i class="fa-regular fa-file-video"></i>
+                    <button>The Hows of Us - Excerpt</button>
+                </li>
+                <li class="video-clip">
+                    <i class="fa-regular fa-file-video"></i>
+                    <button>Truth about walking</button>
+                </li>
+                <li class="video-clip">
+                    <i class="fa-regular fa-file-video"></i>
+                    <button>WHY I CHOOSE JESUS  - D. Washington</button>
+                </li>
+                <li class="video-clip">
+                    <i class="fa-regular fa-file-video"></i>
+                    <button>Winners Need Discipline Not Motivation</button>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <!-- functionality -->
-    <script src="player.js"></script>
+    <script src="functionality/videos.js"></script>
+    <script src="functionality/player.js"></script>
+    <script src="functionality/feature.js"></script>
 </body>
 </html>
