@@ -76,23 +76,34 @@ const time_update = (current_time, duration) => {
     progress_range.children[0].style.width = `${(current_time / duration) * 100}%`;
     // deriving duration value to populate in the DOM
     let duration_min = Math.floor(duration / 60);
-    duration_min < 10 ? duration_min = `0${duration_min}` : duration_min = duration_min ;
+    // for when duration minute is less than 10, add 0 before it
+    if (duration_min < 10) duration_min = `0${duration_min}`;
+
     let duration_sec = Math.floor(duration % 60);
-    duration_sec < 10 ? duration_sec = `0${duration_sec}` : duration_sec = duration_sec ;
+    // for when duration second is less than 10, add 0 before it
+    if (duration_sec < 10) duration_sec = `0${duration_sec}`;
     // deriving current time value to populate in the DOM
     let current_time_min = Math.floor(current_time / 60);
-    current_time_min < 10 ? current_time_min = `0${current_time_min}` : current_time_min = current_time_min ;
+    // for when current time minute is less than 10, add 0 before it
+    if (current_time_min < 10) current_time_min = `0${current_time_min}`;
+
     let current_time_sec = Math.floor(current_time % 60);
-    current_time_sec < 10 ? current_time_sec = `0${current_time_sec}` : current_time_sec = current_time_sec ;
+    // for when current time second is less than 10, add 0 before it
+    if (current_time_sec < 10) current_time_sec = `0${current_time_sec}`;
     // populating computed time in the DOM
     time_stamps[0].textContent = `${current_time_min}:${current_time_sec} /`;
-    time_stamps[1].textContent = `${duration_min}:${duration_sec}`;
+    // to prevent time stamp from displaying NaN
+    if (duration_min) time_stamps[1].textContent = `${duration_min}:${duration_sec}`;
 }
+
+// global changable variables for current_time and duration
+let current_time;
+let duration;
 
 const set_progress = (e) => {
     // fetching video's current time and duration
-    const current_time = e.target.currentTime;
-    const duration = e.target.duration;
+    current_time = e.target.currentTime;
+    duration = e.target.duration;
     // setting progress bar and update time stamp dynamically
     time_update(current_time, duration);
 }
@@ -101,11 +112,11 @@ const set_progress = (e) => {
 const seek = (e) => {
     // deriving how much time skipped
     const progress_amount = e.offsetX / e.target.offsetWidth;
-    const current_time = progress_amount * video.duration;
+    current_time = progress_amount * duration;
     // letting video playback time be what user skipped to
     video.currentTime = current_time;
     // setting progress bar and update time stamp dynamically
-    time_update(current_time, video.duration);
+    time_update(current_time, duration);
 }
 
 // adjusting playback speed
